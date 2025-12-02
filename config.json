@@ -87,6 +87,10 @@
         {
             "name": "CFT Test",
             "value": "TXR-25685"
+        },
+        {
+            "name": "starze",
+            "value": "TXR-1234"
         }
     ],
     "maxLastIssues": 10,

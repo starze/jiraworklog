@@ -26,7 +26,10 @@ describe("run test", () => {
 
     beforeAll(() => {
         config.jiraUrl = "http://jira";
-        config.issues = [{ name: "Sonstiges", value: "TXR-13128" }];
+        config.issues = [
+            { name: "Sonstiges", value: "TXR-13128" },
+            { name: "starze", value: "TXR-1234" },
+        ];
     });
 
     beforeEach(() => {
@@ -96,6 +99,11 @@ describe("run test", () => {
         it("gets key by name if available", async () => {
             const key = await testModule.getIssueKeyByName("Sonstiges");
             expect(key).toEqual("TXR-13128");
+        });
+
+        it("gets key for starze issue", async () => {
+            const key = await testModule.getIssueKeyByName("starze");
+            expect(key).toEqual("TXR-1234");
         });
 
         it("rejects if name is not found", function () {
@@ -176,7 +184,7 @@ describe("run test", () => {
                 await testModule.run();
 
                 expect(consoleLogMock).toHaveBeenCalledWith(
-                    expect.stringMatching(/TXR-1234 │ Custom │ 1/),
+                    expect.stringMatching(/TXR-1234 │ starze │ 1/),
                 );
                 expect(consoleLogMock).toHaveBeenCalledWith(
                     expect.stringMatching(/Zeit insgesamt: 0.01.*Stunden \(1 Minuten\)/),
